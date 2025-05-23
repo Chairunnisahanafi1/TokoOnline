@@ -11,8 +11,7 @@
         <!-- msgSuccess --> 
         @if(session()->has('success')) 
         <div class="alert alert-success alert-dismissible" role="alert"> 
-            <button type="button" class="close" data-dismiss="alert" aria
-label="Close"><span aria-hidden="true">&times;</span></button> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
             <strong>{{ session('success') }}</strong> 
         </div> 
         @endif 
@@ -20,8 +19,7 @@ label="Close"><span aria-hidden="true">&times;</span></button>
         <!-- msgError --> 
         @if(session()->has('error')) 
         <div class="alert alert-danger alert-dismissible" role="alert"> 
-            <button type="button" class="close" data-dismiss="alert" aria
-label="Close"><span aria-hidden="true">&times;</span></button> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> 
             <strong>{{ session('error') }}</strong> 
         </div> 
         @endif 
@@ -50,7 +48,7 @@ label="Close"><span aria-hidden="true">&times;</span></button>
                 @endphp 
                 <tr> 
                     <td class="thumb"><img src="{{ asset('storage/img-produk/thumb_sm_' . 
-$item->produk->foto) }}" alt=""></td> 
+                    $item->produk->foto) }}" alt=""></td> 
                     <td class="details"> 
                         <a>{{ $item->produk->nama_produk }}</a> 
                         <ul> 
@@ -71,10 +69,10 @@ $item->produk->foto) }}" alt=""></td>
                     </td> 
                     <td class="total text-center"><strong class="primary-color">Rp. {{ number_format($item->harga * $item->quantity, 0, ',', '.') }}</strong></td> 
                     <td class="text-right"> 
-                        <form action="#" method="post"> 
+                        <form action="{{ route('order.cart.destroy', $item->id) }}" method="POST" style="display: inline;"> 
                             @csrf 
-                            <button class="main-btn icon-btn"><i class="fa fa
-close"></i></button> 
+                            @method('DELETE')
+                            <button class="main-btn icon-btn"><i class="fa fa-close"></i></button> 
                         </form> 
                     </td> 
                 </tr> 

@@ -137,20 +137,7 @@ sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebart
                         <!-- User profile and search -->
                         <!-- ============================================================== 
 -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect 
-waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/users/1.jpg" alt="user" class="rounded-circle"
-                                    width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd 
-animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i
-                                        class="ti-user m-r-5 m-l-5"></i> Profil Saya</a>
-                                <a class="dropdown-item" href=""
-                                    onclick="event.preventDefault(); document.getElementById('keluar-app').submit();"><i
-                                        class="fa fa-power-off m-r-5 m-l-5"></i> Keluar</a>
-                                <div class="dropdown-divider"></div>
-                            </div>
-                        </li>
+                       
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 @if (Auth::user()->foto)
@@ -220,8 +207,7 @@ animated">
 
                                  <ul aria-expanded="false" class="collapse  first-level"> 
                          <li class="sidebar-item"><a href="{{ route('backend.laporan.formuser') }}" class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> User </span></a></li> 
-                        <li class="sidebar-item"><a href="{{route('backend.laporan.formproduk') }}"
-                                i class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Produk 
+                        <li class="sidebar-item"><a href="{{route('backend.laporan.formproduk') }}"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Produk 
                         </span></a></li> 
                         </ul> 
                         </li> 
@@ -244,7 +230,7 @@ animated">
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Toko Online Store</h4>
+                        <h4 class="page-title">Toko Online</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">

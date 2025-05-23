@@ -33,14 +33,7 @@ alt="">
                     <img src="{{ asset('storage/img-produk/thumb_sm_' . $row->foto) }}" 
 alt=""> 
                 </div> 
-                @foreach ($fotoProdukTambahan as $item) 
-                <div class="product-view"> 
-                    @if ($item->produk_id == $row->id) 
-                    <img src="{{ asset('storage/img-produk/' . $item->foto) }}" alt=""> 
-                    @else 
-                    @endif 
-                </div> 
-                @endforeach 
+                
             </div> 
         </div> 
         <div class="col-md-6"> 
@@ -67,11 +60,10 @@ alt="">
                 </div> 
  
                 <div class="product-btns"> 
-                    <form action="#" method="post" 
+                    <form action="{{ route('order.addToCart', $row->id) }}" method="post" 
                         style="display: inline-block;"> 
                         @csrf 
-                        <button type="submit" class="primary-btn add-to-cart"><i class="fa 
-fa-shopping-cart"></i> 
+                        <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> 
                             Pesan</button> 
                     </form> 
                 </div> 

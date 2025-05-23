@@ -28,7 +28,7 @@
                                             <a href="{{route('produk.detail', $row->id)}}" title="Detail Produk">
                                                 <button class="main-btn icon-btn"><i class="fa fa-search-plus"></i></button>
                                             </a>
-                                            <form action="{{ route('order.addToCart', $row->id) }}" method="post"  
+                                            <form action="{{ route('order.addToCart', $row->id) }}" method="POST"  
                                                 style="display: inline-block;" title="Pesan Ke Aplikasi">
                                                 @csrf
                                                 <button type="submit" 

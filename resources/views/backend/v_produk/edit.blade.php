@@ -154,11 +154,9 @@ role="alert">
                     </div> 
                     <div class="border-top"> 
                         <div class="card-body"> 
-                            <button type="submit" class="btn btn
-primary">Perbaharui</button> 
+                            <button type="submit" class="btn btn-primary">Perbaharui</button> 
                             <a href="{{ route('backend.produk.index') }}"> 
-                                <button type="button" class="btn btn
-secondary">Kembali</button> 
+                                <button type="button" class="btn btn-secondary">Kembali</button> 
                             </a> 
                         </div> 
                     </div> 

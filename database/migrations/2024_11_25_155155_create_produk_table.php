@@ -21,7 +21,7 @@ return new class extends Migration
             $table->double('harga'); 
             $table->integer('stok'); 
             $table->float('berat'); 
-            $table->string('foto'); // Thumbnail image 
+            $table->string('  foto'); // Thumbnail image 
             $table->timestamps(); 
             $table->foreign('kategori_id')->references('id')->on('kategori'); 
             $table->foreign('user_id')->references('id')->on('user'); 

@@ -104,7 +104,7 @@ class ProdukController extends Controller
         return view('backend.v_produk.edit', [ 
         'judul' => 'Ubah Produk', 
         'edit' => $produk, 
-            'kategori' => $kategori 
+        'kategori' => $kategori 
         ]); 
     }
 
@@ -249,8 +249,7 @@ class ProdukController extends Controller
             ]); 
         } 
     } 
-    return redirect()->route('backend.produk.show', $request->produk_id) 
-        ->with('success', 'Foto berhasil ditambahkan.'); 
+    return redirect()->route('backend.produk.show', $request->produk_id)->with('success', 'Foto berhasil ditambahkan.'); 
     } 
 
     // Method untuk menghapus foto 

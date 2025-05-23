@@ -9,6 +9,17 @@
                     enctype="multipart/form-data">
                     @method('put')
                     @csrf
+
+                    @if(request()->has('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: 'Data berhasil diperbarui!',
+            confirmButtonColor: '#8e44ad'
+        });
+    </script>
+@endif
                     <div class="card-body">
                         <h4 class="card-title"> {{$judul}} </h4>
                         <div class="row">

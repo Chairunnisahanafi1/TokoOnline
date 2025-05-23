@@ -25,11 +25,13 @@ Route::get('backend/beranda', [BerandaController::class, 'berandaBackend'])->nam
 Route::get('backend/login', [LoginController::class, 'loginBackend'])->name('backend.login');
 Route::post('backend/login', [LoginController::class, 'authenticateBackend'])->name('backend.login');
 Route::post('backend/logout', [LoginController::class, 'logoutBackend'])->name('backend.logout');
+
 // Route::resource('backend/user', UserController::class)->middleware('auth');
 Route::resource('backend/user', UserController::class, ['as' => 'backend'])->middleware('auth');
 Route::get('backend/user', [UserController::class, 'index'])->name('backend.user.index');
 Route::resource('backend/kategori', KategoriController::class, ['as' => 'backend']) ->middleware('auth');
-Route::resource('backend/produk', ProdukController::class, ['as' => 'backend'])->middleware('auth'); 
+Route::resource('backend/produk', ProdukController::class, ['as' => 'backend'])->middleware('auth');
+ 
 // Route untuk menambahkan foto 
 Route::post('foto-produk/store', [ProdukController::class, 'storeFoto'])->name('backend.foto_produk.store')->middleware('auth'); 
 // Route untuk menghapus foto 
@@ -52,36 +54,38 @@ Route::get('/auth/redirect', [CustomerController::class, 'redirect'])->name('aut
 Route::get('/auth/google/callback', [CustomerController::class, 'callback'])->name('auth.callback');
 
 #Logout
-Route::get('/logout', [CustomerController::class, 'logout'])->name('customer.logout');
+Route::post('/logout', [CustomerController::class, 'logout'])->name('customer.logout');
 
 # Route untuk Customer 
 Route::resource('/backend/customer', CustomerController::class, ['as' => 'backend'])->middleware('auth');
+Route::get('/backend/customer', [CustomerController::class, 'index'])->name('backend.customer.index');
+Route::put('/backend/customer/{id}', [CustomerController::class, 'update'])->name('backend.customer.update');
 
-Route::middleware('is.customer')->group(function() {
-# Route untuk menampilkan halaman akun customer
-Route::get('/customer/akun/{id}', [CustomerController::class, 'akun'])->name('customer.akun');
-# Route untuk mengupdate akun customer
-Route::put('/customer/akun/{id}/update', [CustomerController::class, 'updateAkun'])->name('customer.updateAkun'); 
-});
+
+
+
+
+
+// Group route untuk customer 
+Route::middleware('is.customer')->group(function () { 
+// Route untuk menampilkan halaman akun customer 
+Route::get('/customer/akun/{id}', [CustomerController::class, 'akun']) ->name('customer.akun'); 
+// Route untuk mengupdate data akun customer 
+Route::put('/customer/updateakun/{id}', [CustomerController::class, 'updateAkun']) ->name('customer.updateakun'); 
+}); 
 
 # untuk menambahkan produk kedalam keranjang
 Route::post('/add-to-cart/{id}', [OrderController::class, 'addToCart'])->name('order.addToCart');
 Route::get('/cart',[OrderController::class, 'viewCart'])->name('order.cart');
+Route::post('/cart',[OrderController::class, 'storeToCart'])->name('order.cart.store');
+Route::delete('/cart/{id}', [OrderController::class, 'destroy'])->name('order.cart.destroy');
+
+
 
 # vmkfmvkf
 
-Route::get('/list-ongkir', function () {
-    $response = Http::withHeaders([
-        'key' => env('KOMERCE_API_KEY') // pastikan ini sesuai isi .env
-    ])->get('http://rajaongkir.komerce.id/api/v1/destination/domestic-destination?search=sinduharjo&limit=5&offset=0');
 
-    dd($response->json());
-}); 
+Route::get('/list-ongkir', [RajaOngkirController::class, 'index']);
 
-Route::get('/cek-ongkir', function () { 
-    return view('ongkir'); 
-}); 
  
-Route::get('/provinces', [RajaOngkirController::class, 'getProvinces']); 
-Route::get('/cities', [RajaOngkirController::class, 'getCities']); 
-Route::post('/cost', [RajaOngkirController::class, 'getCost']); 
+

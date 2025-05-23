@@ -14,6 +14,7 @@ class OrderController extends Controller
     public function addToCart($id) 
     { 
         $customer = Customer::where('user_id', Auth::id())->first(); 
+
         $produk = Produk::findOrFail($id); 
  
         $order = Order::firstOrCreate( 
@@ -34,18 +35,30 @@ class OrderController extends Controller
         $order->total_harga += $produk->harga; 
         $order->save(); 
  
-        return redirect()->route('order.cart')->with('success', 'Produk berhasil 
-ditambahkan ke keranjang'); 
+        return redirect()->route('order.cart')->with('success', 'Produk berhasil ditambahkan ke keranjang'); 
     } 
  
     public function viewCart() 
     { 
         $customer = Customer::where('user_id', Auth::id())->first(); 
-        $order = Order::where('customer_id', $customer->id)->where('status', 'pending', 
-'paid')->first(); 
+        $order = Order::where('customer_id', $customer->id)->where('status', 'pending','paid')->first(); 
+
         if ($order) { 
             $order->load('orderItems.produk'); 
         } 
         return view('v_order.cart', compact('order')); 
     } 
+    public function storeToCart(Request $request)
+{
+    // proses simpan ke cart
+    // contoh:
+    // Cart::create([
+    //     'product_id' => $request->product_id,
+    //     'qty' => $request->qty,
+    // ]);
+    return redirect()->route('order.cart')->with('success', 'Produk ditambahkan ke keranjang!');
+    
+}
+
+
 }
